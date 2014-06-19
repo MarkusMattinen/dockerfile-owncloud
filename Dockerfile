@@ -2,6 +2,7 @@
 #
 # Includes php-fpm, cron job support and PostgreSQL support
 FROM markusma/nginx-etcd:trusty
+MAINTAINER Markus Mattinen <docker@gamma.fi>
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends php5-fpm php5-pgsql php5-mysql php5-intl php5-gd php-xml-parser php5-curl cron \
