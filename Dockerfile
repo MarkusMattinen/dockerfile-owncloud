@@ -7,9 +7,8 @@ MAINTAINER Markus Mattinen <docker@gamma.fi>
 RUN apt-get update \
  && apt-get install -y --no-install-recommends php5-fpm php5-pgsql php5-mysql php5-intl php5-gd php-xml-parser php5-curl cron \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-RUN cd /var/www \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+ && cd /var/www \
  && curl -sSL http://download.owncloud.org/community/owncloud-6.0.3.tar.bz2 | tar jx \
  && chown -R www-data:www-data /var/www/owncloud
 
