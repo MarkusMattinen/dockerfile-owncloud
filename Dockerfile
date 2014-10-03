@@ -9,7 +9,7 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
  && cd /var/www \
- && curl -sSL http://download.owncloud.org/community/owncloud-6.0.4.tar.bz2 | tar jx \
+ && curl -sSL http://download.owncloud.org/community/owncloud-6.0.5.tar.bz2 | tar jx \
  && chown -R www-data:www-data /var/www/owncloud
 
 ADD config/etc/crontab /etc/crontab
