@@ -1,7 +1,7 @@
 # owncloud, nginx, etcd registration, confd and supervisord on trusty
 #
 # Includes php-fpm, cron job support and PostgreSQL support
-FROM markusma/nginx-etcd:trusty
+FROM markusma/nginx-etcdregister:1.5.13
 MAINTAINER Markus Mattinen <docker@gamma.fi>
 
 RUN apt-get update \
