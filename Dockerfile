@@ -17,6 +17,8 @@ ADD config/etc/nginx/server.conf /etc/nginx/server.conf
 ADD config/etc/php5 /etc/php5
 ADD config/etc/supervisor/conf.d /etc/supervisor/conf.d
 ADD config/init /init
+ADD config/var/www/owncloud/.htaccess /var/www/owncloud/.htaccess
+ADD config/var/www/owncloud/.user.ini /var/www/owncloud/.user.ini
 
 VOLUME ["/var/www/owncloud/data", "/var/www/owncloud/config"]
 EXPOSE 5000
