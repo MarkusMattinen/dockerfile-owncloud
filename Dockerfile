@@ -7,10 +7,18 @@ MAINTAINER Markus Mattinen <docker@gamma.fi>
 RUN apt-get update \
  && apt-get install -y --no-install-recommends php5-fpm php5-pgsql php5-mysql php5-intl php5-gd php-xml-parser php5-curl cron \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+ && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ENV OWNCLOUD_VERSION 8.0.3
+
+RUN cd /tmp \
+ && curl -sSL http://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2 > owncloud-${OWNCLOUD_VERSION}.tar.bz2 \
+ && curl -sSL http://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2.md5 > owncloud-${OWNCLOUD_VERSION}.tar.bz2.md5 \
+ && cat owncloud-${OWNCLOUD_VERSION}.tar.bz2 | md5sum --check --strict owncloud-${OWNCLOUD_VERSION}.tar.bz2.md5 \
  && cd /var/www \
- && curl -sSL http://download.owncloud.org/community/owncloud-8.0.3.tar.bz2 | tar jx \
- && chown -R www-data:www-data /var/www/owncloud
+ && tar jxf /tmp/owncloud-${OWNCLOUD_VERSION}.tar.bz2 \
+ && chown -R www-data:www-data /var/www/owncloud \
+ && rm -rf /tmp/*
 
 ADD config/etc/crontab /etc/crontab
 ADD config/etc/nginx/server.conf /etc/nginx/server.conf
