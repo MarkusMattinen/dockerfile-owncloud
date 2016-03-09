@@ -25,8 +25,12 @@ ADD config/etc/nginx/server.conf /etc/nginx/server.conf
 ADD config/etc/php5 /etc/php5
 ADD config/etc/supervisor/conf.d /etc/supervisor/conf.d
 ADD config/init /init
-ADD config/var/www/owncloud/.htaccess /var/www/owncloud/.htaccess
 ADD config/var/www/owncloud/.user.ini /var/www/owncloud/.user.ini
+
+RUN cd /var/www/owncloud \
+ && sed -i 's/php_value upload_max_filesize .*/php_value upload_max_filesize 10G/' .htaccess \
+ && sed -i 's/php_value post_max_size .*/php_value post_max_size 10G/' .htaccess \
+ && sed -i 's/php_value memory_limit .*/php_value memory_limit 4G/' .htaccess
 
 VOLUME ["/var/www/owncloud/data", "/var/www/owncloud/config"]
 EXPOSE 5000
