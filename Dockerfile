@@ -9,7 +9,7 @@ RUN apt-get update \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV OWNCLOUD_VERSION 8.0.3
+ENV OWNCLOUD_VERSION 8.1.6
 
 RUN cd /tmp \
  && curl -sSL http://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2 > owncloud-${OWNCLOUD_VERSION}.tar.bz2 \
