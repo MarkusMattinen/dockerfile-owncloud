@@ -1,15 +1,15 @@
-# owncloud, nginx, etcd registration, confd and supervisord on trusty
+# OwnCloud 8.0, nginx, etcd registration, confd and supervisord on Ubuntu Trusty
 #
 # Includes php-fpm, cron job support and PostgreSQL support
 FROM markusma/nginx-etcdregister:1.7
-MAINTAINER Markus Mattinen <docker@gamma.fi>
+MAINTAINER Markus Mattinen <markus@gamma.fi>
 
 RUN apt-get update \
  && apt-get install -y --no-install-recommends php5-fpm php5-pgsql php5-mysql php5-intl php5-gd php-xml-parser php5-curl cron \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENV OWNCLOUD_VERSION 8.1.6
+ENV OWNCLOUD_VERSION 8.0.3
 
 RUN cd /tmp \
  && curl -sSL http://download.owncloud.org/community/owncloud-${OWNCLOUD_VERSION}.tar.bz2 > owncloud-${OWNCLOUD_VERSION}.tar.bz2 \

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+chown www-data:www-data /var/www/owncloud/data /var/www/owncloud/config
+
+# only autoconfigure if configuration file does not exist, i.e. on first run
+if [ -f /var/www/owncloud/autoconfig.php -a ! -f /var/www/owncloud/config/config.php ]
+then
+    cp /var/www/owncloud/autoconfig.php /var/www/owncloud/config/autoconfig.php
+fi
+
+rm -f /var/www/owncloud/autoconfig.php
+
+exec /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
